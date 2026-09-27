@@ -1,0 +1,35 @@
+const coursesData = [
+    {
+        "id": 1,
+        title: 'Demoday',
+        category: 'empreendedorismo',
+        instructor: 'Itaipu Parquetec',
+        level: 'Iniciante',
+        duration: '1h49',
+        date: '2025',
+        favorite: false,
+        poster: 'assets/images/thumb.png',
+        description: 'Apresentações e projetos do Demoday Itaipu Parquetec, reunindo ideias, soluções e iniciativas empreendedoras.',
+        lessons: [
+            { title: '01. Reforma Tributária - Primeiro Lugar', duration: '5:42', thumb: 'https://drive.google.com/thumbnail?id=1s7_6YHnmdUSrYv4I0Ibs4XEZTuVo1WQu&sz=w800', video: 'https://drive.google.com/file/d/1s7_6YHnmdUSrYv4I0Ibs4XEZTuVo1WQu/preview' },
+            { title: '02. Banca - Reforma Tributária', duration: '4:37', thumb: 'https://drive.google.com/thumbnail?id=1ClpvqFlMlyX-ruuB2kJincMCmHP6yaid&sz=w800', video: 'https://drive.google.com/file/d/1ClpvqFlMlyX-ruuB2kJincMCmHP6yaid/preview' },
+            { title: '03. PrevMaint - Segundo Lugar', duration: '4:21', thumb: 'https://drive.google.com/thumbnail?id=1CTOLu1YgrJWNPs66uXZsB2ijXwursuIW&sz=w800', video: 'https://drive.google.com/file/d/1CTOLu1YgrJWNPs66uXZsB2ijXwursuIW/preview' },
+            { title: '04. Banca - PrevMaint', duration: '4:18', thumb: 'https://drive.google.com/thumbnail?id=1bVe1aZY1yKF6rtlwHbQL4pNyd5LYiDVT&sz=w800', video: 'https://drive.google.com/file/d/1bVe1aZY1yKF6rtlwHbQL4pNyd5LYiDVT/preview' },
+            { title: '05. Data Science Para Advogados', duration: '5:17', thumb: 'https://drive.google.com/thumbnail?id=1yGQxaC4--v39FRuCZ_3n4XDV9mcnQDgD&sz=w800', video: 'https://drive.google.com/file/d/1yGQxaC4--v39FRuCZ_3n4XDV9mcnQDgD/preview' },
+            { title: '06. Banca - Data Science Para Advogados', duration: '6:18', thumb: 'https://drive.google.com/thumbnail?id=1q6dZ-ekhLwbNA8YigyxMp61BDMEVPdln&sz=w800', video: 'https://drive.google.com/file/d/1q6dZ-ekhLwbNA8YigyxMp61BDMEVPdln/preview' },
+            { title: '07. Coleta Domiciliar de Perfurocortantes', duration: '4:05', thumb: 'https://drive.google.com/thumbnail?id=1xFCQjhrYdNCotaGYHreEhz6O8iDTSQam&sz=w800', video: 'https://drive.google.com/file/d/1xFCQjhrYdNCotaGYHreEhz6O8iDTSQam/preview' },
+            { title: '08. Banca - Coleta Domiciliar de Perfurocortantes', duration: '1:56', thumb: 'https://drive.google.com/thumbnail?id=1nW2cigFz-FN_iwOrNncUtWO1q2SmxM60&sz=w800', video: 'https://drive.google.com/file/d/1nW2cigFz-FN_iwOrNncUtWO1q2SmxM60/preview' },
+            { title: '09. Banca 2 - Coleta Domiciliar de Perfurocortantes', duration: '2:36', thumb: 'https://drive.google.com/thumbnail?id=1DqcYV4LsuAOY8Cl-SRTcCtvAZn5dZlyY&sz=w800', video: 'https://drive.google.com/file/d/1DqcYV4LsuAOY8Cl-SRTcCtvAZn5dZlyY/preview' },
+            { title: '10. KAFKA', duration: '5:07', thumb: 'https://drive.google.com/thumbnail?id=1kATpcrBRVS0cTwHHUitLzo7FqkPGyR_4&sz=w800', video: 'https://drive.google.com/file/d/1kATpcrBRVS0cTwHHUitLzo7FqkPGyR_4/preview' },
+            { title: '11. Banca KAFKA', duration: '5:45', thumb: 'https://drive.google.com/thumbnail?id=18LhdAYUNvoKJe5Q4zjccn_DYXM_mXaUF&sz=w800', video: 'https://drive.google.com/file/d/18LhdAYUNvoKJe5Q4zjccn_DYXM_mXaUF/preview' },
+            { title: '12. PROMOPING', duration: '5:14', thumb: 'https://drive.google.com/thumbnail?id=1QnLlBiPLQc3fcKWzQj_3Rk8S_Rt_jRU0&sz=w800', video: 'https://drive.google.com/file/d/1QnLlBiPLQc3fcKWzQj_3Rk8S_Rt_jRU0/preview' },
+            { title: '13. Banca - PROMOPING', duration: '4:57', thumb: 'https://drive.google.com/thumbnail?id=1F3rYGW7YjoblXCwLClE43Uwuyl-um-io&sz=w800', video: 'https://drive.google.com/file/d/1F3rYGW7YjoblXCwLClE43Uwuyl-um-io/preview' },
+            { title: '14. EcoEquilíbrio Acústico', duration: '8:04', thumb: 'https://drive.google.com/thumbnail?id=1WHgc_GLF-3-guTnMWkAAO7mTGX9--QSQ&sz=w800', video: 'https://drive.google.com/file/d/1WHgc_GLF-3-guTnMWkAAO7mTGX9--QSQ/preview' },
+            { title: '15. Banca - EcoEquilíbrio Acústico', duration: '1:08', thumb: 'https://drive.google.com/thumbnail?id=1vvS32avMmTMdb2qm2PA7mhWqKzlpgMUG&sz=w800', video: 'https://drive.google.com/file/d/1vvS32avMmTMdb2qm2PA7mhWqKzlpgMUG/preview' },
+            { title: '16. PayON', duration: '2:46', thumb: 'https://drive.google.com/thumbnail?id=1OpInHuHc2i_B6nPgmb1hroDvf3sc0bJ_&sz=w800', video: 'https://drive.google.com/file/d/1OpInHuHc2i_B6nPgmb1hroDvf3sc0bJ_/preview' },
+            { title: '17. Banca - PayON', duration: '8:23', thumb: 'https://drive.google.com/thumbnail?id=1fUWkG4TpI8uDfnCF5tXIfqDusXOnm31L&sz=w800', video: 'https://drive.google.com/file/d/1fUWkG4TpI8uDfnCF5tXIfqDusXOnm31L/preview' },
+            { title: '18. BRIDGE', duration: '5:19', thumb: 'https://drive.google.com/thumbnail?id=1m7mVgqqDyg7S_mP_ZlzJ7e3HuR8btdaF&sz=w800', video: 'https://drive.google.com/file/d/1m7mVgqqDyg7S_mP_ZlzJ7e3HuR8btdaF/preview' },
+            { title: '19. Banca - BRIDGE', duration: '7:55', thumb: 'https://drive.google.com/thumbnail?id=1dlV7E2BdQTAI3ll40J5i6IzNk3vGG8B3&sz=w800', video: 'https://drive.google.com/file/d/1dlV7E2BdQTAI3ll40J5i6IzNk3vGG8B3/preview' },
+        ]
+    }
+]

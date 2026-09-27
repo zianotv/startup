@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZianoTV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/images/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <main>
+
+    <iframe
+      name="player"
+      src=""
+      loading="lazy"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+
+    <section class="header">
+
+      <button id="info">
+        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 7H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 11H12V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 16H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Info
+      </button>
+
+      <button id="next">Próximo</button>
+
+    </section>
+
+    <section class="list" id="list"></section>
+
+  </main>
+
+  <dialog id="infoDialog">
+    <section class="info-dialog" id="infoContent"></section>
+  </dialog>
+
+  <script src="assets/js/data.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const cursoId = Number(params.get('curso')) || 1;
+    const aulaParam = Number(params.get('aula'));
+
+    const course =
+      coursesData.find(item => item.id === cursoId) ||
+      coursesData[0];
+
+    const lessons = course.lessons;
+    const courseThumb = course.poster || course.thumb;
+
+    const list = document.getElementById('list');
+    const info = document.getElementById('info');
+    const next = document.getElementById('next');
+    const player = document.querySelector('iframe');
+    const infoDialog = document.getElementById('infoDialog');
+    const infoContent = document.getElementById('infoContent');
+
+    let current =
+      Number.isInteger(aulaParam) &&
+      aulaParam >= 0 &&
+      aulaParam < lessons.length
+        ? aulaParam
+        : 0;
+
+    list.innerHTML = lessons.map((item,index) => `
+      <div class="card ${index === current ? 'ativo' : ''}">
+        <img src="${item.thumb}" loading="lazy" alt="${item.title}">
+        <span>${item.title}</span>
+      </div>
+    `).join('');
+
+    const cards = Array.from(
+      list.querySelectorAll('.card')
+    );
+
+    player.src = lessons[current].video;
+
+    next.toggleAttribute(
+      'disabled',
+      current === cards.length - 1
+    );
+
+    info.addEventListener('click',() => {
+
+      infoContent.innerHTML = `
+        <button
+          class="info-close"
+          onclick="infoDialog.close()"
+          aria-label="Fechar"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <div class="info-header">
+
+          <img
+            class="info-thumb"
+            src="${courseThumb}"
+            alt="${course.title}"
+          >
+
+          <div class="info-body">
+
+            <h2>${course.title}</h2>
+
+            <div class="info-line">
+              <strong>Instrutor:</strong>
+              <span>${course.instructor}</span>
+            </div>
+
+            <div class="info-line">
+              <strong>Categoria:</strong>
+              <span>${course.category.charAt(0).toUpperCase() + course.category.slice(1)}</span>
+            </div>
+
+            <div class="info-line">
+              <strong>Nível:</strong>
+              <span>${course.level}</span>
+            </div>
+
+            <div class="info-line">
+              <strong>Duração:</strong>
+              <span>${course.duration}</span>
+            </div>
+
+            <div class="info-line">
+              <strong>Lançamento:</strong>
+              <span>${course.date}</span>
+            </div>
+
+            <div class="info-line">
+              <strong>Descrição:</strong>
+              <span>${course.description}</span>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+      infoDialog.showModal();
+    });
+
+    infoDialog.addEventListener('click',event => {
+      if (event.target === infoDialog) {
+        infoDialog.close();
+      }
+    });
+
+    infoDialog.addEventListener('cancel',event => {
+      event.preventDefault();
+      infoDialog.close();
+    });
+
+    const update = index => {
+
+      cards[current].classList.remove('ativo');
+
+      current = index;
+
+      cards[current].classList.add('ativo');
+
+      player.src = lessons[current].video;
+
+      next.toggleAttribute(
+        'disabled',
+        current === cards.length - 1
+      );
+
+      list.scrollTo({
+        left:
+          cards[current].offsetLeft -
+          parseFloat(getComputedStyle(list).paddingLeft),
+        behavior:'smooth'
+      });
+    };
+
+    list.addEventListener('click',e => {
+
+      const card = e.target.closest('.card');
+
+      if (!card) return;
+
+      const index = cards.indexOf(card);
+
+      if (index === current) return;
+
+      if (index !== -1) {
+        update(index);
+      }
+    });
+
+    next.addEventListener('click',() => {
+
+      if (current < cards.length - 1) {
+        update(current + 1);
+      }
+
+    });
+  </script>
+
+</body>
+</html>
