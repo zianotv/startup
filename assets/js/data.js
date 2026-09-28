@@ -5,7 +5,7 @@ const coursesData = [
         category: 'empreendedorismo',
         instructor: 'Itaipu Parquetec',
         level: 'Iniciante',
-        duration: '1h49',
+        duration: '30:17',
         date: '2025',
         favorite: false,
         poster: 'assets/images/thumb.png',
