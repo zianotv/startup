@@ -12,6 +12,13 @@
 <body>
 
   <main>
+    <iframe
+      name="player"
+      src=""
+      loading="lazy"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
 
     <section class="header">
 
@@ -28,14 +35,6 @@
       <button id="next">Próximo</button>
 
     </section>
-
-    <iframe
-      name="player"
-      src=""
-      loading="lazy"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
 
     <section class="list" id="list"></section>
 
@@ -127,16 +126,6 @@
             <div class="info-line">
               <strong>Instrutor:</strong>
               <span>${course.instructor}</span>
-            </div>
-
-            <div class="info-line">
-              <strong>Categoria:</strong>
-              <span>${course.category.charAt(0).toUpperCase() + course.category.slice(1)}</span>
-            </div>
-
-            <div class="info-line">
-              <strong>Nível:</strong>
-              <span>${course.level}</span>
             </div>
 
             <div class="info-line">
