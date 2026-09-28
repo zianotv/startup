@@ -1,5 +1,5 @@
 *{margin:0;padding:0;box-sizing:border-box}
-body{background-color:#0f0f0f;color:#fff;font-family:'Plus Jakarta Sans',sans-serif}
+body{background-color:#000;color:#fff;font-family:'Plus Jakarta Sans',sans-serif}
 main{width:100%;display:flex;flex-direction:column;}
 iframe{width:100%;aspect-ratio:16 / 9;height:auto;max-height:calc(100vh - 7rem);background:#0f0f0f;border:none;flex-shrink:0 }
 .header{display:flex;justify-content:space-between;align-items:center;padding:1rem}
@@ -26,7 +26,7 @@ dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(.125rem)}
 .info-line strong{min-width:5.5rem;flex-shrink:0;color:#aaa}
 .info-line span{min-width:0;line-height:1.7}
 @media (max-width:768px){
-    iframe{objectFit: "cover"}
+    iframe{object-fit: "cover"}
     .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none}
     .card{flex:none;width:100%;flex-direction:row;align-items:center;background:#212121;color:#fff;border:.0625rem solid rgba(255,255,255,.15);border-radius:.5rem;padding:.75rem 1rem;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
     .card:hover{background:#fff;color:#0f0f0f;border-color:#fff}
